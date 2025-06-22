@@ -39,8 +39,9 @@ def get_shop_list_by_dishes(dishes, person_count):
             if ingredient_name in shop_list:
                 shop_list[ingredient_name]['quantity'] += quantity
             else:
-                shop_list[ingredient_name] = {'measure': measure, 'quantity': quantity}
-    return  shop_list
+                shop_list[ingredient_name] = {
+                    'measure': measure, 'quantity': quantity}
+    return shop_list
 
 
 cook_book = read_recipes()
