@@ -23,5 +23,27 @@ def read_recipes():
         return cook_book
 
 
+def get_shop_list_by_dishes(dishes, person_count):
+    cook_book = read_recipes()
+
+    shop_list = {}
+
+    for dish in dishes:
+        if dish not in cook_book:
+            continue
+        for ingredient in cook_book[dish]:
+            ingredient_name = ingredient['ingredient_name'],
+            measure = ingredient['measure'],
+            quantity = ingredient['quantity'] * person_count
+
+            if ingredient_name in shop_list:
+                shop_list[ingredient_name]['quantity'] += quantity
+            else:
+                shop_list[ingredient_name] = {'measure': measure, 'quantity': quantity}
+    return  shop_list
+
+
 cook_book = read_recipes()
-pprint(cook_book, width=120, indent=4, depth=3, sort_dicts=False)
+shop_list = get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 6)
+
+pprint(shop_list, width=120, indent=4, depth=3, sort_dicts=False)
